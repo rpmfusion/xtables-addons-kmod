@@ -3,8 +3,8 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-#define buildforkernels newest
-%define buildforkernels current
+%define buildforkernels newest
+#define buildforkernels current
 #define buildforkernels akmods
 
 Name:		xtables-addons-kmod
@@ -18,7 +18,7 @@ Source0:	http://downloads.sourceforge.net/xtables-addons/xtables-addons-%{versio
 Source11:	xtables-addons-kmodtool-excludekernel-filterfile
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 # needed for plague to make sure it builds for i586 and i686
-ExclusiveArch:  i586 i686 x86_64 ppc ppc64 sparc sparc64 s390x s390 armv5tel
+ExclusiveArch:  i586 i686 x86_64 ppc ppc64 %{sparc} s390x s390 %{arm}
 # get the needed BuildRequires (in parts depending on what we build for)
 BuildRequires:	%{_bindir}/kmodtool
 %{!?kernels:BuildRequires: buildsys-build-rpmfusion-kerneldevpkgs-%{?buildforkernels:%{buildforkernels}}%{!?buildforkernels:current}-%{_target_cpu} }

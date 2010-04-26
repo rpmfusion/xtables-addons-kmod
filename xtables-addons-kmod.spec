@@ -3,13 +3,13 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-%define buildforkernels newest
-#define buildforkernels current
+#define buildforkernels newest
+%define buildforkernels current
 #define buildforkernels akmods
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	1.24
+Version:	1.25
 Release:	1%{?dist}
 License:	GPLv2
 Group:		System Environment/Kernel
@@ -17,8 +17,6 @@ URL:		http://xtables-addons.sourceforge.net
 Source0:	http://downloads.sourceforge.net/xtables-addons/xtables-addons-%{version}.tar.bz2
 Source11:	xtables-addons-kmodtool-excludekernel-filterfile
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-# needed for plague to make sure it builds for i586 and i686
-ExclusiveArch:  i586 i686 x86_64 ppc ppc64 %{sparc} s390x s390 %{arm}
 # get the needed BuildRequires (in parts depending on what we build for)
 BuildRequires:	%{_bindir}/kmodtool
 %{!?kernels:BuildRequires: buildsys-build-rpmfusion-kerneldevpkgs-%{?buildforkernels:%{buildforkernels}}%{!?buildforkernels:current}-%{_target_cpu} }
@@ -68,5 +66,11 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Apr 26 2010 Chen Lei <supercyper@163.com> - 1.25-1
+- update to 1.25
+
+* Sun Apr 25 2010 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 1.24-1.1
+- rebuild for new kernel
+
 * Thu Mar 18 2010 Chen Lei <supercyper@163.com> - 1.24-1
 - initial rpm build

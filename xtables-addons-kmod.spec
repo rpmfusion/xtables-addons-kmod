@@ -3,14 +3,14 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-%define buildforkernels newest
-#define buildforkernels current
+#define buildforkernels newest
+%define buildforkernels current
 #define buildforkernels akmods
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	1.24
-Release:	1%{?dist}.3
+Version:	1.25
+Release:	1%{?dist}
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
@@ -66,13 +66,10 @@ rm -rf %{buildroot}
 
 
 %changelog
-* Thu Apr 22 2010 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 1.24-1.3
-- rebuild for new kernel
+* Mon Apr 26 2010 Chen Lei <supercyper@163.com> - 1.25-1
+- update to 1.25
 
-* Mon Apr 19 2010 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 1.24-1.2
-- rebuild for new kernel
-
-* Sat Apr 17 2010 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 1.24-1.1
+* Sun Apr 25 2010 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 1.24-1.1
 - rebuild for new kernel
 
 * Thu Mar 18 2010 Chen Lei <supercyper@163.com> - 1.24-1

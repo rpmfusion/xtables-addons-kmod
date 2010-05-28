@@ -10,7 +10,7 @@
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
 Version:	1.26
-Release:	1%{?dist}.4
+Release:	1%{?dist}.5
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
@@ -66,6 +66,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Fri May 28 2010 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 1.26-1.5
+- rebuild for new kernel
+
 * Thu May 20 2010 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 1.26-1.4
 - rebuild for new kernel
 

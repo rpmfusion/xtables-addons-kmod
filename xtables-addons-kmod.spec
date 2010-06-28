@@ -4,8 +4,8 @@
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
 #define buildforkernels newest
-%define buildforkernels current
-#define buildforkernels akmods
+#define buildforkernels current
+%define buildforkernels akmods
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons

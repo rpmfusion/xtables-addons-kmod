@@ -41,7 +41,7 @@ kmodtool  --target %{_target_cpu} --repo rpmfusion --kmodname %{name} %{?buildfo
 %setup -q -c -T -a 0
 for kernel_version in %{?kernel_versions} ; do
 	cp -a xtables-addons-%{version} _kmod_build_${kernel_version%%___*}
-	if [ -e /lib/modules/${kernel_version%%___*}/kernel/net/*/xt_TEE.ko ]; then
+	if grep -q 'XT_TARGET_TEE=m' %{ _usrsrc}/${kernel_version%%___*}/.config; then
 		pushd _kmod_build_${kernel_version%%___*}
 			sed -i 's/build_TEE=m/build_TEE=/' mconfig
 		popd

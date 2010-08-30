@@ -3,14 +3,14 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-%define buildforkernels newest
-#define buildforkernels current
+#define buildforkernels newest
+%define buildforkernels current
 #define buildforkernels akmods
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	1.27
-Release:	1%{?dist}.4
+Version:	1.28
+Release:	1%{?dist}
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
@@ -46,6 +46,12 @@ done
 
 %build
 for kernel_version  in %{?kernel_versions} ; do
+	if grep -q 'XT_TARGET_TEE=m' %{_usrsrc}/kernels/${kernel_version%%___*}/.config; then
+		sed -i 's/build_TEE=m/build_TEE=/' _kmod_build_${kernel_version%%___*}/mconfig
+	fi
+	if grep -q 'XT_TARGET_CHECKSUM=m' %{_usrsrc}/kernels/${kernel_version%%___*}/.config; then
+		sed -i 's/build_CHECKSUM=m/build_CHECKSUM=/' _kmod_build_${kernel_version%%___*}/mconfig
+	fi
 	export XA_ABSTOPSRCDIR=${PWD}/_kmod_build_${kernel_version%%___*}
 	make %{?_smp_mflags} V=1 -C "${kernel_version##*___}" M=${PWD}/_kmod_build_${kernel_version%%___*}/extensions modules
 done
@@ -63,19 +69,12 @@ chmod u+x %{buildroot}/lib/modules/*/extra/*/*
 %clean
 rm -rf %{buildroot}
 
-
 %changelog
-* Fri Aug 20 2010 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 1.27-1.4
-- rebuild for new kernel
+* Sun Jul 25 2010 Chen Lei <supercyper@163.com> - 1.28-1
+- update to 1.28
 
-* Tue Jul 27 2010 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 1.27-1.3
-- rebuild for new kernel
-
-* Wed Jul 07 2010 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 1.27-1.2
-- rebuild for new kernel
-
-* Fri Jun 18 2010 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 1.27-1.1
-- rebuild for new kernel
+* Mon Jun 28 2010 Chen Lei <supercyper@163.com> - 1.27-2
+- rebuild for kernel 2.6.35
 
 * Mon May 31 2010 Chen Lei <supercyper@163.com> - 1.27-1
 - update to 1.27

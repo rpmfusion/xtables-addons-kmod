@@ -9,8 +9,8 @@
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	1.27
-Release:	2%{?dist}
+Version:	1.28
+Release:	1%{?dist}
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
@@ -41,16 +41,17 @@ kmodtool  --target %{_target_cpu} --repo rpmfusion --kmodname %{name} %{?buildfo
 %setup -q -c -T -a 0
 for kernel_version in %{?kernel_versions} ; do
 	cp -a xtables-addons-%{version} _kmod_build_${kernel_version%%___*}
-	if grep -q 'XT_TARGET_TEE=m' %{_usrsrc}/kernels/${kernel_version%%___*}/.config; then
-		pushd _kmod_build_${kernel_version%%___*}
-			sed -i 's/build_TEE=m/build_TEE=/' mconfig
-		popd
-	fi
 done
 
 
 %build
 for kernel_version  in %{?kernel_versions} ; do
+	if grep -q 'XT_TARGET_TEE=m' %{_usrsrc}/kernels/${kernel_version%%___*}/.config; then
+		sed -i 's/build_TEE=m/build_TEE=/' _kmod_build_${kernel_version%%___*}/mconfig
+	fi
+	if grep -q 'XT_TARGET_CHECKSUM=m' %{_usrsrc}/kernels/${kernel_version%%___*}/.config; then
+		sed -i 's/build_CHECKSUM=m/build_CHECKSUM=/' _kmod_build_${kernel_version%%___*}/mconfig
+	fi
 	export XA_ABSTOPSRCDIR=${PWD}/_kmod_build_${kernel_version%%___*}
 	make %{?_smp_mflags} V=1 -C "${kernel_version##*___}" M=${PWD}/_kmod_build_${kernel_version%%___*}/extensions modules
 done
@@ -68,8 +69,10 @@ chmod u+x %{buildroot}/lib/modules/*/extra/*/*
 %clean
 rm -rf %{buildroot}
 
-
 %changelog
+* Sun Jul 25 2010 Chen Lei <supercyper@163.com> - 1.28-1
+- update to 1.28
+
 * Mon Jun 28 2010 Chen Lei <supercyper@163.com> - 1.27-2
 - rebuild for kernel 2.6.35
 

@@ -3,20 +3,19 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-%define buildforkernels newest
-#define buildforkernels current
+#define buildforkernels newest
+%define buildforkernels current
 #define buildforkernels akmods
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	1.28
+Version:	1.30
 Release:	1%{?dist}
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
 Source0:	http://downloads.sourceforge.net/xtables-addons/xtables-addons-%{version}.tar.xz
 #Source11:	xtables-addons-kmodtool-excludekernel-filterfile
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 # get the needed BuildRequires (in parts depending on what we build for)
 BuildRequires:	%{_bindir}/kmodtool
 %{!?kernels:BuildRequires: buildsys-build-rpmfusion-kerneldevpkgs-%{?buildforkernels:%{buildforkernels}}%{!?buildforkernels:current}-%{_target_cpu} }
@@ -46,11 +45,11 @@ done
 
 %build
 for kernel_version  in %{?kernel_versions} ; do
-	if grep -q 'XT_TARGET_TEE=m' %{_usrsrc}/kernels/${kernel_version%%___*}/.config; then
-		sed -i 's/build_TEE=m/build_TEE=/' _kmod_build_${kernel_version%%___*}/mconfig
+	if ! grep -q 'XT_TARGET_TEE=m' %{_usrsrc}/kernels/${kernel_version%%___*}/.config; then
+		sed -i 's/build_TEE=/build_TEE=m/' _kmod_build_${kernel_version%%___*}/mconfig
 	fi
-	if grep -q 'XT_TARGET_CHECKSUM=m' %{_usrsrc}/kernels/${kernel_version%%___*}/.config; then
-		sed -i 's/build_CHECKSUM=m/build_CHECKSUM=/' _kmod_build_${kernel_version%%___*}/mconfig
+	if ! grep -q 'XT_TARGET_CHECKSUM=m' %{_usrsrc}/kernels/${kernel_version%%___*}/.config; then
+		sed -i 's/build_CHECKSUM=/build_CHECKSUM=m/' _kmod_build_${kernel_version%%___*}/mconfig
 	fi
 	export XA_ABSTOPSRCDIR=${PWD}/_kmod_build_${kernel_version%%___*}
 	make %{?_smp_mflags} V=1 -C "${kernel_version##*___}" M=${PWD}/_kmod_build_${kernel_version%%___*}/extensions modules
@@ -58,7 +57,6 @@ done
 
 
 %install
-rm -rf %{buildroot}
 for kernel_version  in %{?kernel_versions} ; do
 	export XA_ABSTOPSRCDIR=${PWD}/_kmod_build_${kernel_version%%___*}
 	make %{?_smp_mflags} V=1 -C "${kernel_version##*___}" M=${PWD}/_kmod_build_${kernel_version%%___*}/extensions _emodinst_ INSTALL_MOD_PATH=%{buildroot} ext-mod-dir=%{kmodinstdir_postfix}
@@ -70,6 +68,9 @@ chmod u+x %{buildroot}/lib/modules/*/extra/*/*
 rm -rf %{buildroot}
 
 %changelog
+* Wed Oct 27 2010 Chen Lei <supercyper@163.com> - 1.30-1
+- update to 1.30
+
 * Sun Jul 25 2010 Chen Lei <supercyper@163.com> - 1.28-1
 - update to 1.28
 

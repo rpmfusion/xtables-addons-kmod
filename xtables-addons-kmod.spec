@@ -3,14 +3,12 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-%define buildforkernels newest
-#define buildforkernels current
-#define buildforkernels akmods
+%define buildforkernels current
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	1.30
-Release:	1%{?dist}.11
+Version:	1.39
+Release:	1%{?dist}
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
@@ -68,38 +66,8 @@ chmod u+x %{buildroot}/lib/modules/*/extra/*/*
 rm -rf %{buildroot}
 
 %changelog
-* Sun Nov 13 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.30-1.11
-- rebuild for updated kernel
-
-* Wed Nov 02 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.30-1.10
-- rebuild for updated kernel
-
-* Sun Oct 30 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.30-1.9
-- rebuild for updated kernel
-
-* Wed Oct 19 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.30-1.8
-- rebuild for updated kernel
-
-* Fri Oct 07 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.30-1.7
-- rebuild for updated kernel
-
-* Sat Sep 03 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.30-1.6
-- rebuild for updated kernel
-
-* Wed Aug 17 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.30-1.5
-- rebuild for updated kernel
-
-* Sun Jul 31 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.30-1.4
-- rebuild for updated kernel
-
-* Tue Jul 12 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.30-1.3
-- Rebuild for updated kernel
-
-* Wed Jun 15 2011 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 1.30-1.2
-- rebuild for updated kernel
-
-* Sat Jun 04 2011 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 1.30-1.1
-- rebuild for updated kernel
+* Thu Nov 17 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1
+- Update to 1.39
 
 * Wed Oct 27 2010 Chen Lei <supercyper@163.com> - 1.30-1
 - update to 1.30

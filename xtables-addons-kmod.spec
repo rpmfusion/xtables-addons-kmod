@@ -7,8 +7,8 @@
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	1.30
-Release:	2%{?dist}.5
+Version:	1.39
+Release:	1%{?dist}
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
@@ -66,23 +66,8 @@ chmod u+x %{buildroot}/lib/modules/*/extra/*/*
 rm -rf %{buildroot}
 
 %changelog
-* Wed Nov 16 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.30-2.5
-- rebuild for updated kernel
-
-* Wed Nov 02 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.30-2.4
-- Rebuild for F-16 kernel
-
-* Tue Nov 01 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.30-2.3
-- Rebuild for F-16 kernel
-
-* Fri Oct 28 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.30-2.2
-- Rebuild for F-16 kernel
-
-* Sun Oct 23 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.30-2.1
-- Rebuild for F-16 kernel
-
-* Sat May 28 2011 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 1.30-2
-- rebuild for F15 release kernel
+* Thu Nov 17 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1
+- Update to 1.39
 
 * Wed Oct 27 2010 Chen Lei <supercyper@163.com> - 1.30-1
 - update to 1.30

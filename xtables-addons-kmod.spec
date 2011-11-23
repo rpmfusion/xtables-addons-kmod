@@ -13,6 +13,7 @@ License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
 Source0:	http://downloads.sourceforge.net/xtables-addons/xtables-addons-%{version}.tar.xz
+Patch0:		SOURCES/xtables-addons-1.39-fakek.patch
 #Source11:	xtables-addons-kmodtool-excludekernel-filterfile
 # get the needed BuildRequires (in parts depending on what we build for)
 BuildRequires:	%{_bindir}/kmodtool
@@ -36,6 +37,7 @@ the xtables-addons package in order to make use of these modules.
 kmodtool  --target %{_target_cpu} --repo rpmfusion --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %setup -q -c -T -a 0
+%patch0 -p1 -b .fakek
 for kernel_version in %{?kernel_versions} ; do
 	cp -a xtables-addons-%{version} _kmod_build_${kernel_version%%___*}
 done

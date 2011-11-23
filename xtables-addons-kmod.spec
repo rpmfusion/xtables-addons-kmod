@@ -70,6 +70,7 @@ rm -rf %{buildroot}
 %changelog
 * Wed Nov 23 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1.1
 - rebuild for updated kernel
+- Fix build with fake kernel versioning
 
 * Thu Nov 17 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1
 - Update to 1.39

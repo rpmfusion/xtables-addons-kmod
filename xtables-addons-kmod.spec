@@ -3,17 +3,16 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-%define buildforkernels newest
+%define buildforkernels current
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	1.39
-Release:	1%{?dist}.9
+Version:	1.41
+Release:	1%{?dist}
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
 Source0:	http://downloads.sourceforge.net/xtables-addons/xtables-addons-%{version}.tar.xz
-Patch0:		SOURCES/xtables-addons-1.39-fakek.patch
 #Source11:	xtables-addons-kmodtool-excludekernel-filterfile
 # get the needed BuildRequires (in parts depending on what we build for)
 BuildRequires:	%{_bindir}/kmodtool
@@ -37,7 +36,6 @@ the xtables-addons package in order to make use of these modules.
 kmodtool  --target %{_target_cpu} --repo rpmfusion --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %setup -q -c -T -a 0
-%patch0 -p1 -b .fakek
 for kernel_version in %{?kernel_versions} ; do
 	cp -a xtables-addons-%{version} _kmod_build_${kernel_version%%___*}
 done
@@ -68,33 +66,8 @@ chmod u+x %{buildroot}/lib/modules/*/extra/*/*
 rm -rf %{buildroot}
 
 %changelog
-* Tue Jan 24 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1.9
-- rebuild for updated kernel
-
-* Sun Jan 15 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1.8
-- rebuild for updated kernel
-
-* Mon Jan 09 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1.7
-- rebuild for updated kernel
-
-* Wed Jan 04 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1.6
-- rebuild for updated kernel
-
-* Fri Dec 23 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1.5
-- rebuild for updated kernel
-
-* Sat Dec 17 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1.4
-- rebuild for updated kernel
-
-* Tue Dec 13 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1.3
-- rebuild for updated kernel
-
-* Thu Dec 01 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1.2
-- rebuild for updated kernel
-
-* Wed Nov 23 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1.1
-- rebuild for updated kernel
-- Fix build with fake kernel versioning
+* Tue Jan 24 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1
+- Update to 1.41
 
 * Thu Nov 17 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1
 - Update to 1.39

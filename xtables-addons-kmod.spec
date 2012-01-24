@@ -3,12 +3,12 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-%define buildforkernels newest
+%define buildforkernels current
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	1.39
-Release:	1%{?dist}.10
+Version:	1.41
+Release:	1%{?dist}
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
@@ -66,35 +66,8 @@ chmod u+x %{buildroot}/lib/modules/*/extra/*/*
 rm -rf %{buildroot}
 
 %changelog
-* Tue Jan 24 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1.10
-- rebuild for updated kernel
-
-* Sun Jan 15 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1.9
-- rebuild for updated kernel
-
-* Mon Jan 09 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1.8
-- rebuild for updated kernel
-
-* Wed Jan 04 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1.7
-- rebuild for updated kernel
-
-* Fri Dec 23 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1.6
-- rebuild for updated kernel
-
-* Sat Dec 17 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1.5
-- rebuild for updated kernel
-
-* Tue Dec 13 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1.4
-- rebuild for updated kernel
-
-* Sat Dec 10 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1.3
-- rebuild for updated kernel
-
-* Thu Dec 01 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1.2
-- rebuild for updated kernel
-
-* Wed Nov 23 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1.1
-- rebuild for updated kernel
+* Tue Jan 24 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1
+- Update to 1.41
 
 * Thu Nov 17 2011 Nicolas Chauvet <kwizart@gmail.com> - 1.39-1
 - Update to 1.39

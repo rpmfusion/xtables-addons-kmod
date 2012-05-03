@@ -3,12 +3,12 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-%define buildforkernels current
+#define buildforkernels newest
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
 Version:	1.42
-Release:	1%{?dist}
+Release:	1%{?dist}.4
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
@@ -57,7 +57,7 @@ done
 %install
 for kernel_version  in %{?kernel_versions} ; do
 	export XA_ABSTOPSRCDIR=${PWD}/_kmod_build_${kernel_version%%___*}
-	make %{?_smp_mflags} V=1 -C "${kernel_version##*___}" M=${PWD}/_kmod_build_${kernel_version%%___*}/extensions _emodinst_ INSTALL_MOD_PATH=%{buildroot} ext-mod-dir=%{kmodinstdir_postfix}
+	make %{?_smp_mflags} V=1 -C "${kernel_version##*___}" M=${PWD}/_kmod_build_${kernel_version%%___*}/extensions _emodinst_ INSTALL_MOD_PATH=%{buildroot}%{_prefix} ext-mod-dir=%{kmodinstdir_postfix}
 done
 chmod u+x %{buildroot}%{_prefix}/lib/modules/*/extra/*/*
 %{?akmod_install}
@@ -66,6 +66,18 @@ chmod u+x %{buildroot}%{_prefix}/lib/modules/*/extra/*/*
 rm -rf %{buildroot}
 
 %changelog
+* Wed May 02 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.4
+- rebuild for updated kernel
+
+* Sat Apr 28 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.3
+- rebuild for updated kernel
+
+* Sun Apr 22 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.2
+- rebuild for updated kernel
+
+* Mon Apr 16 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.1
+- rebuild for updated kernel
+
 * Thu Apr 12 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1
 - Update to 1.42
 

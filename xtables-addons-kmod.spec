@@ -3,12 +3,12 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-#define buildforkernels newest
+%define buildforkernels newest
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
 Version:	1.42
-Release:	2%{?dist}
+Release:	2%{?dist}.1
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
@@ -66,6 +66,9 @@ chmod u+x %{buildroot}%{_prefix}/lib/modules/*/extra/*/*
 rm -rf %{buildroot}
 
 %changelog
+* Sat May 05 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-2.1
+- rebuild for updated kernel
+
 * Thu May 03 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-2
 - Fix build
 

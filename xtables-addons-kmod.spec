@@ -3,12 +3,12 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-%define buildforkernels newest
+#define buildforkernels newest
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	1.42
-Release:	2%{?dist}.14
+Version:	1.45
+Release:	1%{?dist}
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
@@ -66,47 +66,8 @@ chmod u+x %{buildroot}%{_prefix}/lib/modules/*/extra/*/*
 rm -rf %{buildroot}
 
 %changelog
-* Tue Jul 31 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-2.14
-- Rebuilt for updated kernel
-
-* Sat Jul 21 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-2.13
-- Rebuilt for updated kernel
-
-* Tue Jul 17 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-2.12
-- Rebuilt for updated kernel
-
-* Fri Jul 06 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-2.11
-- Rebuilt for updated kernel
-
-* Thu Jun 28 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-2.10
-- Rebuilt for updated kernel
-
-* Thu Jun 21 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-2.9
-- Rebuilt for updated kernel
-
-* Sun Jun 17 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-2.8
-- Rebuilt for updated kernel
-
-* Tue Jun 05 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-2.7
-- Rebuilt for updated kernel
-
-* Sun May 27 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-2.6
-- Rebuilt for updated kernel
-
-* Sat May 26 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-2.5
-- Rebuilt for release kernel
-
-* Sun May 13 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-2.4
-- Rebuilt for release kernel
-
-* Wed May 09 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-2.3
-- rebuild for updated kernel
-
-* Sun May 06 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-2.2
-- rebuild for updated kernel
-
-* Sat May 05 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-2.1
-- rebuild for updated kernel
+* Tue Jul 31 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.45-1
+- Update to 1.45
 
 * Thu May 03 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-2
 - Fix build

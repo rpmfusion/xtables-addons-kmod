@@ -67,7 +67,7 @@ rm -rf %{buildroot}
 
 %changelog
 * Tue Jul 31 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.45-1
-- Update to 1.47
+- Update to 1.45
 
 * Thu May 03 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-2
 - Fix build

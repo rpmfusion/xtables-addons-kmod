@@ -57,9 +57,9 @@ done
 %install
 for kernel_version  in %{?kernel_versions} ; do
 	export XA_ABSTOPSRCDIR=${PWD}/_kmod_build_${kernel_version%%___*}
-	make %{?_smp_mflags} V=1 -C "${kernel_version##*___}" M=${PWD}/_kmod_build_${kernel_version%%___*}/extensions _emodinst_ INSTALL_MOD_PATH=%{buildroot}%{_prefix} ext-mod-dir=%{kmodinstdir_postfix}
+	make %{?_smp_mflags} V=1 -C "${kernel_version##*___}" M=${PWD}/_kmod_build_${kernel_version%%___*}/extensions _emodinst_ INSTALL_MOD_PATH=%{buildroot} ext-mod-dir=%{kmodinstdir_postfix}
 done
-chmod u+x %{buildroot}%{_prefix}/lib/modules/*/extra/*/*
+chmod u+x %{buildroot}/lib/modules/*/extra/*/*
 %{?akmod_install}
 
 %clean

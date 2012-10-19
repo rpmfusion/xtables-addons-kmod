@@ -3,12 +3,12 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-%define buildforkernels newest
+#define buildforkernels newest
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	1.42
-Release:	1%{?dist}.13
+Version:	1.46
+Release:	1%{?dist}.3
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
@@ -57,125 +57,53 @@ done
 %install
 for kernel_version  in %{?kernel_versions} ; do
 	export XA_ABSTOPSRCDIR=${PWD}/_kmod_build_${kernel_version%%___*}
-	make %{?_smp_mflags} V=1 -C "${kernel_version##*___}" M=${PWD}/_kmod_build_${kernel_version%%___*}/extensions _emodinst_ INSTALL_MOD_PATH=%{buildroot} ext-mod-dir=%{kmodinstdir_postfix}
+	make %{?_smp_mflags} V=1 -C "${kernel_version##*___}" M=${PWD}/_kmod_build_${kernel_version%%___*}/extensions _emodinst_ INSTALL_MOD_PATH=%{buildroot}%{_prefix} ext-mod-dir=%{kmodinstdir_postfix}
 done
-chmod u+x %{buildroot}/lib/modules/*/extra/*/*
+chmod u+x %{buildroot}%{_prefix}/lib/modules/*/extra/*/*
 %{?akmod_install}
 
 %clean
 rm -rf %{buildroot}
 
 %changelog
-* Thu Oct 18 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.13
+* Thu Oct 18 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.46-1.3
 - Rebuilt for updated kernel
 
-* Wed Oct 17 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.12
+* Thu Oct 11 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.46-1.2
 - Rebuilt for updated kernel
 
-* Thu Oct 11 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.11
+* Mon Oct 08 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.46-1.1
 - Rebuilt for updated kernel
 
-* Wed Oct 03 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.10
-- Rebuilt for updated kernel
+* Wed Oct 03 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.46-1
+- Update to 1.46
 
-* Mon Sep 17 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.9
-- Rebuilt for updated kernel
+* Tue Jul 31 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.45-1
+- Update to 1.45
 
-* Sun Aug 26 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.8
-- Rebuilt for updated kernel
+* Thu May 03 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-2
+- Fix build
 
-* Thu Aug 16 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.7
-- Rebuilt for updated kernel
+* Wed May 02 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.4
+- rebuild for updated kernel
 
-* Tue Jul 31 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.6
-- Rebuilt for updated kernel
+* Sat Apr 28 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.3
+- rebuild for updated kernel
 
-* Thu Jul 26 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.5
-- Rebuilt for updated kernel
+* Sun Apr 22 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.2
+- rebuild for updated kernel
 
-* Tue Jul 17 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.4
-- Rebuilt for updated kernel
+* Mon Apr 16 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.1
+- rebuild for updated kernel
 
-* Fri Jul 06 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.3
-- Rebuilt for updated kernel
-
-* Thu Jun 28 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.2
-- Rebuilt for updated kernel
-
-* Sun Jun 17 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1.1
-- Rebuilt for updated kernel
-
-* Tue Jun 05 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1
+* Thu Apr 12 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.42-1
 - Update to 1.42
 
-* Tue Jun 05 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.23
-- Rebuilt for updated kernel
+* Thu Apr 12 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-2
+- rebuild for beta kernel
 
-* Wed May 23 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.22
-- Rebuilt for updated kernel
-
-* Fri May 18 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.21
-- Rebuilt for release kernel
-
-* Wed May 09 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.20
-- rebuild for updated kernel
-
-* Fri May 04 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.19
-- rebuild for updated kernel
-
-* Wed May 02 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.18
-- rebuild for updated kernel
-
-* Sun Apr 22 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.17
-- rebuild for updated kernel
-
-* Mon Apr 16 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.16
-- rebuild for updated kernel
-
-* Thu Apr 12 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.15
-- rebuild for updated kernel
-
-* Sat Apr 07 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.14
-- rebuild for updated kernel
-
-* Tue Apr 03 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.13
-- rebuild for updated kernel
-
-* Fri Mar 30 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.12
-- rebuild for updated kernel
-
-* Wed Mar 21 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.11
-- rebuild for updated kernel
-
-* Sat Mar 17 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.10
-- rebuild for updated kernel
-
-* Thu Mar 15 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.9
-- rebuild for updated kernel
-
-* Thu Mar 08 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.8
-- rebuild for updated kernel
-
-* Fri Mar 02 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.7
-- rebuild for updated kernel
-
-* Thu Mar 01 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.6
-- rebuild for updated kernel
-
-* Wed Feb 22 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.5
-- rebuild for updated kernel
-
-* Tue Feb 14 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.4
-- rebuild for updated kernel
-
-* Thu Feb 09 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.3
-- rebuild for updated kernel
-
-* Fri Feb 03 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.2
-- rebuild for updated kernel
-
-* Fri Jan 27 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.1
-- rebuild for updated kernel
+* Tue Feb 07 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1.1
+- Rebuild for UsrMove
 
 * Tue Jan 24 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.41-1
 - Update to 1.41

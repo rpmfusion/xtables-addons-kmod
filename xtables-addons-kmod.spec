@@ -3,12 +3,12 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-%define buildforkernels newest
+%define buildforkernels current
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	1.46
-Release:	1%{?dist}.8
+Version:	1.47.1
+Release:	1%{?dist}.1
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
@@ -66,29 +66,12 @@ chmod u+x %{buildroot}%{_prefix}/lib/modules/*/extra/*/*
 rm -rf %{buildroot}
 
 %changelog
-* Wed Nov 21 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.46-1.8
-- Rebuilt for updated kernel
+* Sun Nov 25 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.47.1-1.1
+- Rebuilt for current f18 kernel
 
-* Tue Nov 20 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.46-1.7
-- Rebuilt for updated kernel
-
-* Thu Nov 08 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.46-1.6
-- Rebuilt for updated kernel
-
-* Thu Nov 01 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.46-1.5
-- Rebuilt for updated kernel
-
-* Tue Oct 23 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.46-1.4
-- Rebuilt for updated kernel
-
-* Thu Oct 18 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.46-1.3
-- Rebuilt for updated kernel
-
-* Thu Oct 11 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.46-1.2
-- Rebuilt for updated kernel
-
-* Mon Oct 08 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.46-1.1
-- Rebuilt for updated kernel
+* Sun Nov 25 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.47.1-1
+- Update to 1.47.1
+- Rebuilt for Fedora 18 Beta kernel
 
 * Wed Oct 03 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.46-1
 - Update to 1.46

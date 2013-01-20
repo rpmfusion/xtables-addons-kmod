@@ -7,8 +7,8 @@
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	1.47.1
-Release:	1%{?dist}.10
+Version:	2.1
+Release:	1%{?dist}.1
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
@@ -66,32 +66,26 @@ chmod u+x %{buildroot}%{_prefix}/lib/modules/*/extra/*/*
 rm -rf %{buildroot}
 
 %changelog
-* Sat Jan 19 2013 Nicolas Chauvet <kwizart@gmail.com> - 1.47.1-1.10
+* Thu Jan 17 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1.1
 - Rebuilt for updated kernel
 
-* Thu Jan 17 2013 Nicolas Chauvet <kwizart@gmail.com> - 1.47.1-1.9
+* Mon Jan 14 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1
+- Update to 2.1
+
+* Mon Jan 14 2013 Nicolas Chauvet <kwizart@gmail.com> - 1.47.1-1.6
 - Rebuilt for updated kernel
 
-* Wed Jan 09 2013 Nicolas Chauvet <kwizart@gmail.com> - 1.47.1-1.8
+* Sun Jan 13 2013 Nicolas Chauvet <kwizart@gmail.com> - 1.47.1-1.5
 - Rebuilt for updated kernel
 
-* Sun Dec 23 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.47.1-1.7
-- Rebuilt for updated kernel
+* Thu Jan 03 2013 Nicolas Chauvet <kwizart@gmail.com> - 1.47.1-1.4
+- Rebuilt for f18 final kernel
 
-* Sat Dec 22 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.47.1-1.6
-- Rebuilt for updated kernel
+* Fri Dec 21 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.47.1-1.3
+- Rebuilt for current f18 kernel
 
-* Tue Dec 18 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.47.1-1.5
-- Rebuilt for updated kernel
-
-* Wed Dec 12 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.47.1-1.4
-- Rebuilt for updated kernel
-
-* Wed Dec 05 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.47.1-1.3
-- Rebuilt for updated kernel
-
-* Wed Nov 28 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.47.1-1.2
-- Rebuilt for updated kernel
+* Wed Dec 12 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.47.1-1.2
+- Rebuilt for current f18 kernel
 
 * Sun Nov 25 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.47.1-1.1
 - Rebuilt for current f18 kernel

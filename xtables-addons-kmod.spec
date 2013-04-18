@@ -3,16 +3,16 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-%global buildforkernels newest
+#global buildforkernels newest
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	2.1
-Release:	1%{?dist}.18
+Version:	2.2
+Release:	1%{?dist}
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
-Source0:	http://downloads.sourceforge.net/xtables-addons/xtables-addons-%{version}.tar.xz
+Source0:	http://dl.sourceforge.net/xtables-addons/Xtables-addons/%{version}/xtables-addons-%{version}.tar.xz
 #Source11:	xtables-addons-kmodtool-excludekernel-filterfile
 # get the needed BuildRequires (in parts depending on what we build for)
 BuildRequires:	%{_bindir}/kmodtool
@@ -66,59 +66,8 @@ chmod u+x %{buildroot}%{_prefix}/lib/modules/*/extra/*/*
 rm -rf %{buildroot}
 
 %changelog
-* Thu Apr 18 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1.18
-- Rebuilt for kernel
-
-* Sat Apr 13 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1.17
-- Rebuilt for kernel
-
-* Wed Apr 10 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1.16
-- Rebuilt for kernel
-
-* Tue Apr 02 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1.15
-- Rebuilt for kernel
-
-* Fri Mar 22 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1.14
-- Rebuilt for kernel
-
-* Mon Mar 18 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1.13
-- Rebuilt for kernel
-
-* Fri Mar 15 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1.12
-- Rebuilt for kernel
-
-* Sun Mar 10 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1.11
-Rebuilt for kernel
-
-* Thu Feb 28 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1.10
-- Rebuilt for kernel
-
-* Tue Feb 26 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1.9
-- Rebuilt for kernel
-
-* Thu Feb 21 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1.8
-- Rebuilt for kernel
-
-* Sat Feb 16 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1.7
-- Rebuilt for kernel
-
-* Sat Feb 16 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1.6
-- Rebuilt for kernel
-
-* Wed Feb 13 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1.5
-- Rebuilt for kernel
-
-* Tue Feb 05 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1.4
-- Rebuilt for kernel
-
-* Wed Jan 30 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1.3
-- Rebuilt for updated kernel
-
-* Fri Jan 25 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1.2
-- Rebuilt for updated kernel
-
-* Thu Jan 17 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1.1
-- Rebuilt for updated kernel
+* Thu Apr 18 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.2-1
+- Update to 2.2
 
 * Mon Jan 14 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.1-1
 - Update to 2.1

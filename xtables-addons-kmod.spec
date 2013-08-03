@@ -3,12 +3,12 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-%global buildforkernels newest
+#global buildforkernels newest
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	2.2
-Release:	1%{?dist}.14
+Version:	2.3
+Release:	1%{?dist}
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
@@ -66,47 +66,8 @@ chmod u+x %{buildroot}%{_prefix}/lib/modules/*/extra/*/*
 rm -rf %{buildroot}
 
 %changelog
-* Sat Aug 03 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.2-1.14
-- Rebuilt for kernel
-
-* Tue Jul 23 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.2-1.13
-- Rebuilt for kernel
-
-* Mon Jul 15 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.2-1.12
-- Rebuilt for kernel
-
-* Sat Jul 06 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.2-1.11
-- Rebuilt for kernel
-
-* Sun Jun 30 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.2-1.10
-- Rebuilt for kernel
-
-* Mon Jun 17 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.2-1.9
-- Rebuilt for kernel
-
-* Wed Jun 12 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.2-1.8
-- Rebuilt for kernel
-
-* Sat May 25 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.2-1.7
-- Rebuilt for kernel
-
-* Wed May 22 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.2-1.6
-- Rebuilt for kernel
-
-* Tue May 14 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.2-1.5
-- Rebuilt for kernel
-
-* Fri May 03 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.2-1.4
-- Rebuilt for kernel
-
-* Wed May 01 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.2-1.3
-- Rebuilt for kernel
-
-* Sun Apr 28 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.2-1.2
-Rebuilt for kernel
-
-* Thu Apr 25 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.2-1.1
-- Rebuilt for kernel
+* Tue Jun 18 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.3-1
+- Update to 2.3
 
 * Thu Apr 18 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.2-1
 - Update to 2.2

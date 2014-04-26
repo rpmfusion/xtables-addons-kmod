@@ -3,12 +3,12 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-%global buildforkernels newest
+#global buildforkernels akmod
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	2.3
-Release:	4%{?dist}.20
+Version:	2.5
+Release:	1%{?dist}
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
@@ -59,69 +59,17 @@ for kernel_version  in %{?kernel_versions} ; do
 	export XA_ABSTOPSRCDIR=${PWD}/_kmod_build_${kernel_version%%___*}
 	make %{?_smp_mflags} V=1 -C "${kernel_version##*___}" M=${PWD}/_kmod_build_${kernel_version%%___*}/extensions _emodinst_ INSTALL_MOD_PATH=%{buildroot}%{_prefix} ext-mod-dir=%{kmodinstdir_postfix}
 done
-chmod u+x %{buildroot}%{_prefix}/lib/modules/*/extra/*/*
 %{?akmod_install}
 
 %clean
 rm -rf %{buildroot}
 
 %changelog
-* Sat Apr 26 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.3-4.20
-- Rebuilt for kernel
+* Sat Apr 26 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.5-1
+- Update to 2.5
 
-* Wed Apr 16 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.3-4.19
-- Rebuilt for kernel
-
-* Fri Apr 04 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.3-4.18
-- Rebuilt for kernel
-
-* Wed Apr 02 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.3-4.17
-- Rebuilt for kernel
-
-* Tue Mar 25 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.3-4.16
-- Rebuilt for kernel
-
-* Sun Mar 09 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.3-4.15
-- Rebuilt for kernel
-
-* Tue Mar 04 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.3-4.14
-- Rebuilt for kernel
-
-* Tue Feb 25 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.3-4.13
-- Rebuilt for kernel
-
-* Mon Feb 24 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.3-4.12
-- Rebuilt for kernel
-
-* Mon Feb 17 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.3-4.11
-- Rebuilt for kernel
-
-* Sat Feb 15 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.3-4.10
-- Rebuilt for kernel
-
-* Wed Feb 12 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.3-4.9
-- Rebuilt for kernel
-
-* Fri Feb 07 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.3-4.8
-- Rebuilt for kernel
-
-* Thu Jan 30 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.3-4.7
-- Rebuilt for kernel
-
-* Tue Jan 28 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.3-4.6
-- Rebuilt for kernel
-
-* Fri Jan 17 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.3-4.5
-- Rebuilt for kernel
-
-* Sun Jan 12 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.3-4.4
-- Rebuilt for kernel
-
-* Wed Dec 25 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.3-4.3
-- Rebuilt for kernel
-
-* Fri Dec 20 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.3-4.2
-- Rebuilt for kernel
+* Sun Jan 12 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.4-1
+- Update to 2.4
 
 * Tue Dec 10 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.3-4.1
 - Rebuilt for f20 final kernel

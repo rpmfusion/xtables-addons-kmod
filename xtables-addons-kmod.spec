@@ -8,7 +8,7 @@
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
 Version:	2.5
-Release:	1%{?dist}.13
+Release:	1%{?dist}.14
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
@@ -65,6 +65,9 @@ done
 rm -rf %{buildroot}
 
 %changelog
+* Fri Sep 19 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.5-1.14
+- Rebuilt for kernel
+
 * Wed Sep 10 2014 Nicolas Chauvet <kwizart@gmail.com> - 2.5-1.13
 - Rebuilt for kernel
 

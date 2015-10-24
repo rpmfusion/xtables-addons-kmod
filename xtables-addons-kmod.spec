@@ -5,6 +5,9 @@
 # a new akmod package will only get build when a new one is actually needed
 #global buildforkernels newest
 
+#FIXME xtables-kmod doesn't use the appropriate cflags
+%global debug_package %{nil}
+
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
 Version:	2.9

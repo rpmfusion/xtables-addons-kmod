@@ -3,7 +3,7 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-#global buildforkernels newest
+%global buildforkernels akmod
 
 #FIXME xtables-kmod doesn't use the appropriate cflags
 %global debug_package %{nil}
@@ -11,7 +11,7 @@
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
 Version:	2.11
-Release:	1%{?dist}
+Release:	2%{?dist}
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
@@ -68,6 +68,9 @@ done
 rm -rf %{buildroot}
 
 %changelog
+* Sat Oct 01 2016 Leigh Scott <leigh123linux@googlemail.com> - 2.11-2
+- Switch to akmod build
+
 * Wed Jun 22 2016 Nicolas Chauvet <kwizart@gmail.com> - 2.11-1
 - Update to 2.11
 

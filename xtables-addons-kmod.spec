@@ -5,17 +5,16 @@
 # a new akmod package will only get build when a new one is actually needed
 %global buildforkernels akmod
 
-#FIXME xtables-kmod doesn't use the appropriate cflags
 %global debug_package %{nil}
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	2.11
-Release:	2%{?dist}
+Version:	2.12
+Release:	1%{?dist}
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
-Source0:	http://dl.sourceforge.net/xtables-addons/Xtables-addons/%{version}/xtables-addons-%{version}.tar.xz
+Source0:	http://dl.sourceforge.net/xtables-addons/Xtables-addons/xtables-addons-%{version}.tar.xz
 #Source11:	xtables-addons-kmodtool-excludekernel-filterfile
 # get the needed BuildRequires (in parts depending on what we build for)
 BuildRequires:	%{_bindir}/kmodtool
@@ -68,6 +67,9 @@ done
 rm -rf %{buildroot}
 
 %changelog
+* Tue Jan 17 2017 Nicolas Chauvet <kwizart@gmail.com> - 2.12-1
+- Update to 2.12
+
 * Sat Oct 01 2016 Leigh Scott <leigh123linux@googlemail.com> - 2.11-2
 - Switch to akmod build
 

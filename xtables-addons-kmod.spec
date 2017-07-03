@@ -41,6 +41,10 @@ kmodtool  --target %{_target_cpu} --repo rpmfusion --kmodname %{name} %{?buildfo
 %setup -q -c -T -a 0
 for kernel_version in %{?kernel_versions} ; do
 	cp -a xtables-addons-%{version} _kmod_build_${kernel_version%%___*}
+	%if 0%{?rhel}
+	# FIXME!!! TARPIT doesn't build with the rhel kernel
+	sed -i 's/build_TARPIT=m//' _kmod_build_${kernel_version%%___*}/mconfig
+	%endif
 done
 
 
@@ -64,6 +68,7 @@ rm -rf %{buildroot}
 %changelog
 * Mon Jul 03 2017 Nicolas Chauvet <kwizart@gmail.com> - 2.13-1
 - Update to 2.13
+- Avoid xt_TARPIT on rhel kernel
 
 * Tue Mar 21 2017 RPM Fusion Release Engineering <kwizart@rpmfusion.org> - 2.12-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild

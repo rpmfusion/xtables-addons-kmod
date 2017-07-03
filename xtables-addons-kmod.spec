@@ -3,16 +3,19 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-%global buildforkernels newest
+%if 0%{?fedora}
+%global buildforkernels akmod
+%global debug_package %{nil}
+%endif
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	2.5
-Release:	1%{?dist}.48
+Version:	2.13
+Release:	1%{?dist}
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
-Source0:	http://dl.sourceforge.net/xtables-addons/Xtables-addons/%{version}/xtables-addons-%{version}.tar.xz
+Source0:	http://dl.sourceforge.net/xtables-addons/Xtables-addons/xtables-addons-%{version}.tar.xz
 #Source11:	xtables-addons-kmodtool-excludekernel-filterfile
 # get the needed BuildRequires (in parts depending on what we build for)
 BuildRequires:	%{_bindir}/kmodtool
@@ -38,17 +41,15 @@ kmodtool  --target %{_target_cpu} --repo rpmfusion --kmodname %{name} %{?buildfo
 %setup -q -c -T -a 0
 for kernel_version in %{?kernel_versions} ; do
 	cp -a xtables-addons-%{version} _kmod_build_${kernel_version%%___*}
+	%if 0%{?rhel}
+	# FIXME!!! TARPIT doesn't build with the rhel kernel
+	sed -i 's/build_TARPIT=m//' _kmod_build_${kernel_version%%___*}/mconfig
+	%endif
 done
 
 
 %build
 for kernel_version  in %{?kernel_versions} ; do
-	if ! grep -q 'XT_TARGET_TEE=m' %{_usrsrc}/kernels/${kernel_version%%___*}/.config; then
-		sed -i 's/build_TEE=/build_TEE=m/' _kmod_build_${kernel_version%%___*}/mconfig
-	fi
-	if ! grep -q 'XT_TARGET_CHECKSUM=m' %{_usrsrc}/kernels/${kernel_version%%___*}/.config; then
-		sed -i 's/build_CHECKSUM=/build_CHECKSUM=m/' _kmod_build_${kernel_version%%___*}/mconfig
-	fi
 	export XA_ABSTOPSRCDIR=${PWD}/_kmod_build_${kernel_version%%___*}
 	make %{?_smp_mflags} V=1 -C "${kernel_version##*___}" M=${PWD}/_kmod_build_${kernel_version%%___*}/extensions modules
 done
@@ -65,6 +66,10 @@ done
 rm -rf %{buildroot}
 
 %changelog
+* Mon Jul 03 2017 Nicolas Chauvet <kwizart@gmail.com> - 2.13-1
+- Update to 2.13
+- Avoid xt_TARPIT on rhel kernel
+
 * Wed Jun 10 2015 Nicolas Chauvet <kwizart@gmail.com> - 2.5-1.48
 - Rebuilt for kernel
 

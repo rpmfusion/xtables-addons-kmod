@@ -10,7 +10,7 @@
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	2.13
+Version:	2.14
 Release:	1%{?dist}
 License:	GPLv2
 Group:		System Environment/Kernel
@@ -66,6 +66,12 @@ done
 rm -rf %{buildroot}
 
 %changelog
+* Wed Dec 13 2017 Leigh Scott <leigh123linux@googlemail.com> - 2.14-1
+- Update to 2.14
+
+* Thu Aug 31 2017 RPM Fusion Release Engineering <kwizart@rpmfusion.org> - 2.13-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
+
 * Mon Jul 03 2017 Nicolas Chauvet <kwizart@gmail.com> - 2.13-1
 - Update to 2.13
 - Avoid xt_TARPIT on rhel kernel

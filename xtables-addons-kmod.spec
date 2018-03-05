@@ -10,8 +10,8 @@
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	2.14
-Release:	2%{?dist}
+Version:	3.0
+Release:	1%{?dist}
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
@@ -62,6 +62,9 @@ done
 rm -rf %{buildroot}
 
 %changelog
+* Mon Mar 05 2018 Leigh Scott <leigh123linux@googlemail.com> - 3.0-1
+- Update to 3.0
+
 * Thu Mar 01 2018 RPM Fusion Release Engineering <leigh123linux@googlemail.com> - 2.14-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 

@@ -10,10 +10,9 @@
 
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
-Version:	3.1
+Version:	3.2
 Release:	1%{?dist}
 License:	GPLv2
-Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
 Source0:	http://dl.sourceforge.net/xtables-addons/Xtables-addons/xtables-addons-%{version}.tar.xz
 #Source11:	xtables-addons-kmodtool-excludekernel-filterfile
@@ -58,10 +57,12 @@ for kernel_version  in %{?kernel_versions} ; do
 done
 %{?akmod_install}
 
-%clean
-rm -rf %{buildroot}
-
 %changelog
+* Tue Nov 20 2018 Leigh Scott <leigh123linux@googlemail.com> - 3.2-1
+- Update to 3.2
+- Remove Group tag
+- Remove clean section
+
 * Sat Sep 01 2018 Leigh Scott <leigh123linux@googlemail.com> - 3.1-1
 - Update to 3.1
 

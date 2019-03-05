@@ -11,7 +11,7 @@
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
 Version:	3.2
-Release:	1%{?dist}
+Release:	2%{?dist}
 License:	GPLv2
 URL:		http://xtables-addons.sourceforge.net
 Source0:	http://dl.sourceforge.net/xtables-addons/Xtables-addons/xtables-addons-%{version}.tar.xz
@@ -58,6 +58,9 @@ done
 %{?akmod_install}
 
 %changelog
+* Tue Mar 05 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 3.2-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Tue Nov 20 2018 Leigh Scott <leigh123linux@googlemail.com> - 3.2-1
 - Update to 3.2
 - Remove Group tag

@@ -8,56 +8,60 @@
 %global debug_package %{nil}
 %endif
 
-Name:		xtables-addons-kmod
-Summary:	Kernel module (kmod) for xtables-addons
-Version:	3.2
-Release:	1%{?dist}
-License:	GPLv2
-URL:		http://xtables-addons.sourceforge.net
-Source0:	http://dl.sourceforge.net/xtables-addons/Xtables-addons/xtables-addons-%{version}.tar.xz
-#Source11:	xtables-addons-kmodtool-excludekernel-filterfile
-# get the needed BuildRequires (in parts depending on what we build for)
-BuildRequires:	%{_bindir}/kmodtool
+Name:       xtables-addons-kmod
+Summary:    Kernel module (kmod) for xtables-addons
+Version:    3.3
+Release:    1%{?dist}
+License:    GPLv2
+URL:        http://xtables-addons.sourceforge.net
+Source0:    http://dl.sourceforge.net/xtables-addons/Xtables-addons/xtables-addons-%{version}.tar.xz
+
+
+BuildRequires:    %{_bindir}/kmodtool
 %{!?kernels:BuildRequires: buildsys-build-rpmfusion-kerneldevpkgs-%{?buildforkernels:%{buildforkernels}}%{!?buildforkernels:current}-%{_target_cpu} }
 
 # kmodtool does its magic here
 %{expand:%(kmodtool --target %{_target_cpu} --repo rpmfusion --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
-Xtables-addons provides extra modules for iptables not present in the kernel, 
-and is the successor of patch-o-matic. Extensions includes new targets like 
+Xtables-addons provides extra modules for iptables not present in the kernel,
+and is the successor of patch-o-matic. Extensions includes new targets like
 TEE, TARPIT, CHAOS, or modules like geoip, ipset, and account.
 
-This package provides the xtables-addons kernel modules. You must also install 
+This package provides the xtables-addons kernel modules. You must also install
 the xtables-addons package in order to make use of these modules.
 
 %prep
 # error out if there was something wrong with kmodtool
 %{?kmodtool_check}
+
 # print kmodtool output for debugging purposes:
 kmodtool  --target %{_target_cpu} --repo rpmfusion --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-%setup -q -c -T -a 0
+%autosetup -c -T -a 0
 for kernel_version in %{?kernel_versions} ; do
-	cp -a xtables-addons-%{version} _kmod_build_${kernel_version%%___*}
+    cp -a xtables-addons-%{version} _kmod_build_${kernel_version%%___*}
 done
 
 
 %build
 for kernel_version  in %{?kernel_versions} ; do
-	export XA_ABSTOPSRCDIR=${PWD}/_kmod_build_${kernel_version%%___*}
-	make %{?_smp_mflags} V=1 -C "${kernel_version##*___}" M=${PWD}/_kmod_build_${kernel_version%%___*}/extensions modules
+    export XA_ABSTOPSRCDIR=${PWD}/_kmod_build_${kernel_version%%___*}
+    make %{?_smp_mflags} V=1 -C "${kernel_version##*___}" M=${PWD}/_kmod_build_${kernel_version%%___*}/extensions modules
 done
 
 
 %install
 for kernel_version  in %{?kernel_versions} ; do
-	export XA_ABSTOPSRCDIR=${PWD}/_kmod_build_${kernel_version%%___*}
-	make %{?_smp_mflags} V=1 -C "${kernel_version##*___}" M=${PWD}/_kmod_build_${kernel_version%%___*}/extensions _emodinst_ INSTALL_MOD_PATH=%{buildroot}%{_prefix} ext-mod-dir=%{kmodinstdir_postfix}
+    export XA_ABSTOPSRCDIR=${PWD}/_kmod_build_${kernel_version%%___*}
+    make %{?_smp_mflags} V=1 -C "${kernel_version##*___}" M=${PWD}/_kmod_build_${kernel_version%%___*}/extensions _emodinst_ INSTALL_MOD_PATH=%{buildroot}%{_prefix} ext-mod-dir=%{kmodinstdir_postfix}
 done
 %{?akmod_install}
 
 %changelog
+* Tue Apr 02 18:13:44 CET 2019 Robert-André Mauchin <zebob.m@gmail.com>- 3.3-1
+- Release 3.3
+
 * Tue Nov 20 2018 Leigh Scott <leigh123linux@googlemail.com> - 3.2-1
 - Update to 3.2
 - Remove Group tag

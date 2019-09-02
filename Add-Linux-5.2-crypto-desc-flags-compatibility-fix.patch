@@ -1,0 +1,44 @@
+From 747b399fa22fa5b89d3334e0272ff1b9dc5493ac Mon Sep 17 00:00:00 2001
+From: Arjen de Korte <build+github@de-korte.org>
+Date: Sun, 18 Aug 2019 19:05:45 +0200
+Subject: [PATCH 1/2] Add Linux 5.2 crypto desc flags compatibility fix The
+ flags field was deprecated by linux commit
+ 877b5691f27a1aec0d9b53095a323e45c30069e2 ("crypto: shash - remove
+ shash_desc::flags")
+
+---
+ extensions/pknock/xt_pknock.c | 2 ++
+ extensions/xt_SYSRQ.c         | 2 ++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/extensions/pknock/xt_pknock.c b/extensions/pknock/xt_pknock.c
+index c76901a..78b86f3 100644
+--- xtables-addons-3.3/extensions/pknock/xt_pknock.c
++++ xtables-addons-3.3/extensions/pknock/xt_pknock.c
+@@ -1125,7 +1125,9 @@ static int __init xt_pknock_mt_init(void)
+ 
+ 	crypto.size = crypto_shash_digestsize(crypto.tfm);
+ 	crypto.desc.tfm = crypto.tfm;
++#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 2, 0)
+ 	crypto.desc.flags = 0;
++#endif
+ 
+ 	pde = proc_mkdir("xt_pknock", init_net.proc_net);
+ 	if (pde == NULL) {
+diff --git a/extensions/xt_SYSRQ.c b/extensions/xt_SYSRQ.c
+index c386c7e..1b151ea 100644
+--- xtables-addons-3.3/extensions/xt_SYSRQ.c
++++ xtables-addons-3.3/extensions/xt_SYSRQ.c
+@@ -114,7 +114,9 @@ static unsigned int sysrq_tg(const void *pdata, uint16_t len)
+ 	}
+ 
+ 	desc.tfm   = sysrq_tfm;
++#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 2, 0)
+ 	desc.flags = 0;
++#endif
+ 	ret = crypto_shash_init(&desc);
+ 	if (ret != 0)
+ 		goto hash_fail;
+-- 
+2.21.0
+

@@ -70,6 +70,9 @@ done
 * Tue Apr 02 18:13:44 CET 2019 Robert-André Mauchin <zebob.m@gmail.com>- 3.3-1
 - Release 3.3
 
+* Tue Mar 05 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 3.2-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Tue Nov 20 2018 Leigh Scott <leigh123linux@googlemail.com> - 3.2-1
 - Update to 3.2
 - Remove Group tag

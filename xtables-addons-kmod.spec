@@ -11,7 +11,7 @@
 Name:		xtables-addons-kmod
 Summary:	Kernel module (kmod) for xtables-addons
 Version:	2.13
-Release:	1%{?dist}
+Release:	2%{?dist}
 License:	GPLv2
 Group:		System Environment/Kernel
 URL:		http://xtables-addons.sourceforge.net
@@ -66,6 +66,9 @@ done
 rm -rf %{buildroot}
 
 %changelog
+* Tue Sep 03 2019 Leigh Scott <leigh123linux@gmail.com> - 2.13-2
+- Rebuild for new el7 kernel
+
 * Mon Jul 03 2017 Nicolas Chauvet <kwizart@gmail.com> - 2.13-1
 - Update to 2.13
 - Avoid xt_TARPIT on rhel kernel

@@ -10,16 +10,15 @@
 
 Name:       xtables-addons-kmod
 Summary:    Kernel module (kmod) for xtables-addons
-Version:    3.3
-Release:    3%{?dist}
+Version:    3.5
+Release:    1%{?dist}
 License:    GPLv2
 URL:        http://xtables-addons.sourceforge.net
 Source0:    http://dl.sourceforge.net/xtables-addons/Xtables-addons/xtables-addons-%{version}.tar.xz
-Patch0:     Add-Linux-5.2-crypto-desc-flags-compatibility-fix.patch
 
 
 BuildRequires:    %{_bindir}/kmodtool
-%{!?kernels:BuildRequires: buildsys-build-rpmfusion-kerneldevpkgs-%{?buildforkernels:%{buildforkernels}}%{!?buildforkernels:current}-%{_target_cpu} }
+%{!?kernels:BuildRequires: gcc, elfutils-libelf-devel, buildsys-build-rpmfusion-kerneldevpkgs-%{?buildforkernels:%{buildforkernels}}%{!?buildforkernels:current}-%{_target_cpu} }
 
 # kmodtool does its magic here
 %{expand:%(kmodtool --target %{_target_cpu} --repo rpmfusion --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
@@ -61,13 +60,16 @@ done
 %{?akmod_install}
 
 %changelog
+* Sun Oct 20 2019 Leigh Scott <leigh123linux@googlemail.com> - 3.5-1
+- Release 3.5
+
 * Mon Sep 02 2019 Leigh Scott <leigh123linux@gmail.com> - 3.3-3
 - Patch for kernel-5.2 (rfbz #5376)
 
 * Fri Aug 09 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 3.3-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
-* Tue Apr 02 18:13:44 CET 2019 Robert-André Mauchin <zebob.m@gmail.com>- 3.3-1
+* Tue Apr 02 2019 Robert-André Mauchin <zebob.m@gmail.com>- 3.3-1
 - Release 3.3
 
 * Tue Mar 05 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 3.2-2

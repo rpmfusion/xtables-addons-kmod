@@ -11,7 +11,7 @@
 Name:       xtables-addons-kmod
 Summary:    Kernel module (kmod) for xtables-addons
 Version:    3.18
-Release:    1%{?dist}
+Release:    2%{?dist}
 License:    GPLv2
 URL:        https://inai.de/projects/xtables-addons/
 Source0:    https://inai.de/files/xtables-addons/xtables-addons-%{version}.tar.xz
@@ -68,6 +68,9 @@ done
 %{?akmod_install}
 
 %changelog
+* Tue Jun 08 2021 Nicolas Chauvet <kwizart@gmail.com> - 3.18-2
+- rebuilt
+
 * Sun Mar 21 2021 Leigh Scott <leigh123linux@gmail.com> - 3.18-1
 - Release 3.18
 

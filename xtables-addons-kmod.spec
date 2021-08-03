@@ -11,7 +11,7 @@
 Name:       xtables-addons-kmod
 Summary:    Kernel module (kmod) for xtables-addons
 Version:    3.18
-Release:    3%{?dist}
+Release:    4%{?dist}
 License:    GPLv2
 URL:        https://inai.de/projects/xtables-addons/
 Source0:    https://inai.de/files/xtables-addons/xtables-addons-%{version}.tar.xz
@@ -62,6 +62,9 @@ done
 %{?akmod_install}
 
 %changelog
+* Tue Aug 03 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 3.18-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
+
 * Tue Jul 27 2021 Leigh Scott <leigh123linux@gmail.com> - 3.18-3
 - Manually install .ko files
 

@@ -1,6 +1,6 @@
---- xtables-addons-3.18/extensions/compat_xtables.h
-+++ xtables-addons-3.18/extensions/compat_xtables.h
-@@ -24,7 +24,7 @@
+--- xtables-addons-3.19/extensions/compat_xtables.h
++++ xtables-addons-3.19/extensions/compat_xtables.h
+@@ -21,7 +21,7 @@
  #if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 10, 0) || \
      LINUX_VERSION_CODE >= KERNEL_VERSION(5, 9, 9) && LINUX_VERSION_CODE < KERNEL_VERSION(5, 10, 0) || \
      LINUX_VERSION_CODE >= KERNEL_VERSION(5, 4, 78) && LINUX_VERSION_CODE < KERNEL_VERSION(5, 5, 0) || \

@@ -5,7 +5,18 @@
      LINUX_VERSION_CODE >= KERNEL_VERSION(5, 9, 9) && LINUX_VERSION_CODE < KERNEL_VERSION(5, 10, 0) || \
      LINUX_VERSION_CODE >= KERNEL_VERSION(5, 4, 78) && LINUX_VERSION_CODE < KERNEL_VERSION(5, 5, 0) || \
 -    LINUX_VERSION_CODE >= KERNEL_VERSION(4, 19, 158) && LINUX_VERSION_CODE < KERNEL_VERSION(4, 20, 0)
-+    LINUX_VERSION_CODE >= KERNEL_VERSION(4, 18,0) && LINUX_VERSION_CODE < KERNEL_VERSION(4, 20, 0)
++    LINUX_VERSION_CODE >= KERNEL_VERSION(4, 18, 0) && LINUX_VERSION_CODE < KERNEL_VERSION(4, 20, 0)
  #else
  #	define ip_route_me_harder(xnet, xsk, xskb, xaddrtype) ip_route_me_harder((xnet), (xskb), (xaddrtype))
  #	define ip6_route_me_harder(xnet, xsk, xskb) ip6_route_me_harder((xnet), (xskb))
+--- xtables-addons-3.19/extensions/xt_ipp2p.c
++++ xtables-addons-3.19/extensions/xt_ipp2p.c
+@@ -19,7 +19,7 @@ MODULE_AUTHOR("Eicke Friedrich/Klaus Deg
+ MODULE_DESCRIPTION("An extension to iptables to identify P2P traffic.");
+ MODULE_LICENSE("GPL");
+ 
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 1, 0)
++#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 18, 0)
+ static inline unsigned int
+ ip_transport_len(const struct sk_buff *skb)
+ {

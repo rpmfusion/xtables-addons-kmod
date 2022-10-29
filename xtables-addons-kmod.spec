@@ -10,8 +10,8 @@
 
 Name:       xtables-addons-kmod
 Summary:    Kernel module (kmod) for xtables-addons
-Version:    3.21
-Release:    2%{?dist}
+Version:    3.22
+Release:    1%{?dist}
 License:    GPLv2
 URL:        https://inai.de/projects/xtables-addons/
 Source0:    https://inai.de/files/xtables-addons/xtables-addons-%{version}.tar.xz
@@ -62,6 +62,9 @@ done
 %{?akmod_install}
 
 %changelog
+* Sat Oct 29 2022 Leigh Scott <leigh123linux@gmail.com> - 3.22-1
+- Release 3.22
+
 * Mon Aug 08 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 3.21-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild and ffmpeg
   5.1

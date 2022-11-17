@@ -1,0 +1,26 @@
+From a4a57555c8e6ebf23283cdd9307728bf5c432bc8 Mon Sep 17 00:00:00 2001
+From: Nicolas Chauvet <kwizart@gmail.com>
+Date: Thu, 17 Nov 2022 18:46:06 +0100
+Subject: [PATCH] Fixes for rhel9 kernel
+
+Signed-off-by: Nicolas Chauvet <kwizart@gmail.com>
+---
+ extensions/compat_xtables.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/extensions/compat_xtables.h b/extensions/compat_xtables.h
+index 0a362177e19b..1c32ff4e9836 100644
+--- a/extensions/compat_xtables.h
++++ b/extensions/compat_xtables.h
+@@ -26,7 +26,7 @@
+ #	define ip_route_me_harder(xnet, xsk, xskb, xaddrtype) ip_route_me_harder((xnet), (xskb), (xaddrtype))
+ #	define ip6_route_me_harder(xnet, xsk, xskb) ip6_route_me_harder((xnet), (xskb))
+ #endif
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 17, 0)
++#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 17, 0) && !defined(RHEL_MAJOR)
+ #	define pde_data(inode) PDE_DATA(inode)
+ #endif
+ 
+-- 
+2.38.1
+

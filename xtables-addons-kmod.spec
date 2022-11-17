@@ -5,8 +5,8 @@
 # a new akmod package will only get build when a new one is actually needed
 %if 0%{?fedora}
 %global buildforkernels akmod
-%global debug_package %{nil}
 %endif
+%global debug_package %{nil}
 
 Name:       xtables-addons-kmod
 Summary:    Kernel module (kmod) for xtables-addons
@@ -15,7 +15,8 @@ Release:    1%{?dist}
 License:    GPLv2
 URL:        https://inai.de/projects/xtables-addons/
 Source0:    https://inai.de/files/xtables-addons/xtables-addons-%{version}.tar.xz
-Patch0:     el8_fix.patch
+Patch0:     Fixes-for-rhel8-kernel.patch
+Patch1:     Fixes-for-rhel9-kernel.patch
 
 BuildRequires:    %{_bindir}/kmodtool
 %{!?kernels:BuildRequires: gcc, elfutils-libelf-devel, buildsys-build-rpmfusion-kerneldevpkgs-%{?buildforkernels:%{buildforkernels}}%{!?buildforkernels:current}-%{_target_cpu} }
@@ -38,8 +39,14 @@ the xtables-addons package in order to make use of these modules.
 # print kmodtool output for debugging purposes:
 kmodtool  --target %{_target_cpu} --repo rpmfusion --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-%autosetup -c -T -a 0 -p 0
-ls
+%setup -q -c -T -a 0
+pushd xtables-addons-%{version}
+%patch0 -p1
+%if 0%{?el9}
+%patch1 -p1
+%endif
+popd
+
 for kernel_version in %{?kernel_versions} ; do
     cp -a xtables-addons-%{version} _kmod_build_${kernel_version%%___*}
 done

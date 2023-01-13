@@ -39,7 +39,7 @@ the xtables-addons package in order to make use of these modules.
 kmodtool  --target %{_target_cpu} --repo rpmfusion --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %autosetup -c -T -a 0 -p 0
-ls
+
 for kernel_version in %{?kernel_versions} ; do
     cp -a xtables-addons-%{version} _kmod_build_${kernel_version%%___*}
 done

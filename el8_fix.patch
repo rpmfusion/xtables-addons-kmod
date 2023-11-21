@@ -1,5 +1,5 @@
---- xtables-addons-3.24/extensions/compat_xtables.h
-+++ xtables-addons-3.24/extensions/compat_xtables.h
+--- xtables-addons-3.25/extensions/compat_xtables.h
++++ xtables-addons-3.25/extensions/compat_xtables.h
 @@ -21,7 +21,7 @@
  #if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 10, 0) || \
      LINUX_VERSION_CODE >= KERNEL_VERSION(5, 9, 9) && LINUX_VERSION_CODE < KERNEL_VERSION(5, 10, 0) || \
@@ -9,8 +9,8 @@
  #else
  #	define ip_route_me_harder(xnet, xsk, xskb, xaddrtype) ip_route_me_harder((xnet), (xskb), (xaddrtype))
  #	define ip6_route_me_harder(xnet, xsk, xskb) ip6_route_me_harder((xnet), (xskb))
---- xtables-addons-3.24/extensions/xt_ipp2p.c
-+++ xtables-addons-3.24/extensions/xt_ipp2p.c
+--- xtables-addons-3.25/extensions/xt_ipp2p.c
++++ xtables-addons-3.25/extensions/xt_ipp2p.c
 @@ -19,7 +19,7 @@ MODULE_AUTHOR("Eicke Friedrich/Klaus Deg
  MODULE_DESCRIPTION("An extension to iptables to identify P2P traffic.");
  MODULE_LICENSE("GPL");

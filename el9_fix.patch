@@ -1,0 +1,12 @@
+diff -up xtables-addons-3.25/extensions/compat_xtables.h.orig xtables-addons-3.25/extensions/compat_xtables.h
+--- xtables-addons-3.25/extensions/compat_xtables.h.orig	2023-11-24 14:41:38.305047788 +0100
++++ xtables-addons-3.25/extensions/compat_xtables.h	2023-11-24 16:30:53.525902208 +0100
+@@ -26,7 +26,7 @@
+ #	define ip_route_me_harder(xnet, xsk, xskb, xaddrtype) ip_route_me_harder((xnet), (xskb), (xaddrtype))
+ #	define ip6_route_me_harder(xnet, xsk, xskb) ip6_route_me_harder((xnet), (xskb))
+ #endif
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 17, 0)
++#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 14, 0)
+ #	define pde_data(inode) PDE_DATA(inode)
+ #endif
+ 

@@ -10,13 +10,13 @@
 
 Name:       xtables-addons-kmod
 Summary:    Kernel module (kmod) for xtables-addons
-Version:    3.22
-Release:    1%{?dist}
+Version:    3.25
+Release:    2%{?dist}
 License:    GPLv2
 URL:        https://inai.de/projects/xtables-addons/
 Source0:    https://inai.de/files/xtables-addons/xtables-addons-%{version}.tar.xz
-Patch0:     Fixes-for-rhel8-kernel.patch
-Patch1:     Fixes-for-rhel9-kernel.patch
+Patch0:     el8_fix.patch
+Patch1:     el9_fix.patch
 
 BuildRequires:    %{_bindir}/kmodtool
 %{!?kernels:BuildRequires: gcc, elfutils-libelf-devel, buildsys-build-rpmfusion-kerneldevpkgs-%{?buildforkernels:%{buildforkernels}}%{!?buildforkernels:current}-%{_target_cpu} }
@@ -39,13 +39,7 @@ the xtables-addons package in order to make use of these modules.
 # print kmodtool output for debugging purposes:
 kmodtool  --target %{_target_cpu} --repo rpmfusion --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-%setup -q -c -T -a 0
-pushd xtables-addons-%{version}
-%patch0 -p1
-%if 0%{?el9}
-%patch1 -p1
-%endif
-popd
+%autosetup -c -T -a 0 -p 0
 
 for kernel_version in %{?kernel_versions} ; do
     cp -a xtables-addons-%{version} _kmod_build_${kernel_version%%___*}
@@ -69,6 +63,21 @@ done
 %{?akmod_install}
 
 %changelog
+* Fri Nov 24 2023 Nicolas Chauvet <kwizart@gmail.com> - 3.25-2
+- Update for el9
+
+* Tue Nov 21 2023 Leigh Scott <leigh123linux@gmail.com> - 3.25-1
+- Release 3.25
+
+* Wed Aug 02 2023 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 3.24-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
+
+* Thu May 04 2023 Leigh Scott <leigh123linux@gmail.com> - 3.24-1
+- Release 3.24
+
+* Fri Jan 13 2023 Leigh Scott <leigh123linux@gmail.com> - 3.23-1
+- Release 3.23
+
 * Sat Oct 29 2022 Leigh Scott <leigh123linux@gmail.com> - 3.22-1
 - Release 3.22
 

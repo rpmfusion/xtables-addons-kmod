@@ -11,11 +11,12 @@
 Name:       xtables-addons-kmod
 Summary:    Kernel module (kmod) for xtables-addons
 Version:    3.25
-Release:    1%{?dist}
+Release:    2%{?dist}
 License:    GPLv2
 URL:        https://inai.de/projects/xtables-addons/
 Source0:    https://inai.de/files/xtables-addons/xtables-addons-%{version}.tar.xz
 Patch0:     el8_fix.patch
+Patch1:     el9_fix.patch
 
 BuildRequires:    %{_bindir}/kmodtool
 %{!?kernels:BuildRequires: gcc, elfutils-libelf-devel, buildsys-build-rpmfusion-kerneldevpkgs-%{?buildforkernels:%{buildforkernels}}%{!?buildforkernels:current}-%{_target_cpu} }
@@ -62,6 +63,9 @@ done
 %{?akmod_install}
 
 %changelog
+* Fri Nov 24 2023 Nicolas Chauvet <kwizart@gmail.com> - 3.25-2
+- Update for el9
+
 * Tue Nov 21 2023 Leigh Scott <leigh123linux@gmail.com> - 3.25-1
 - Release 3.25
 

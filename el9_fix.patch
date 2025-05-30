@@ -1,5 +1,5 @@
---- xtables-addons-3.27/extensions/compat_xtables.h
-+++ xtables-addons-3.27/extensions/compat_xtables.h
+--- xtables-addons-3.28/extensions/compat_xtables.h
++++ xtables-addons-3.28/extensions/compat_xtables.h
 @@ -26,7 +26,7 @@
  #	define ip_route_me_harder(xnet, xsk, xskb, xaddrtype) ip_route_me_harder((xnet), (xskb), (xaddrtype))
  #	define ip6_route_me_harder(xnet, xsk, xskb) ip6_route_me_harder((xnet), (xskb))

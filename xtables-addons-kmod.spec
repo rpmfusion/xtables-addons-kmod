@@ -10,9 +10,9 @@
 
 Name:       xtables-addons-kmod
 Summary:    Kernel module (kmod) for xtables-addons
-Version:    3.25
+Version:    3.28
 Release:    2%{?dist}
-License:    GPLv2
+License:    GPL-2.0-only
 URL:        https://inai.de/projects/xtables-addons/
 Source0:    https://inai.de/files/xtables-addons/xtables-addons-%{version}.tar.xz
 Patch0:     el8_fix.patch
@@ -63,6 +63,27 @@ done
 %{?akmod_install}
 
 %changelog
+* Sun Jul 27 2025 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 3.28-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_43_Mass_Rebuild
+
+* Fri May 30 2025 Leigh Scott <leigh123linux@gmail.com> - 3.28-1
+- Update to 3.28
+
+* Wed Jan 29 2025 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 3.27-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_42_Mass_Rebuild
+
+* Thu Nov 21 2024 Leigh Scott <leigh123linux@gmail.com> - 3.27-1
+- Update to 3.27
+
+* Fri Aug 02 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 3.26-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
+
+* Wed Mar 27 2024 Leigh Scott <leigh123linux@gmail.com> - 3.26-1
+- Release 3.26
+
+* Sun Feb 04 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 3.25-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
+
 * Fri Nov 24 2023 Nicolas Chauvet <kwizart@gmail.com> - 3.25-2
 - Update for el9
 

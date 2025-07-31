@@ -3,10 +3,8 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-%if 0%{?fedora} && %{?rhel} >= 10
 %global buildforkernels akmod
 %global debug_package %{nil}
-%endif
 
 Name:       xtables-addons-kmod
 Summary:    Kernel module (kmod) for xtables-addons
